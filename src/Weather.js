@@ -10,10 +10,11 @@ function Weather() {
          .then(response=>response.json())
          .then(result=>{
           console.log(result)
-           country =result
+          
            setdata({
-             name: country.name,
-             weather: country.weather[0]?.description
+             name: result.name,
+             weather: result.weather[0]?.description
+
            })
          }
         )
