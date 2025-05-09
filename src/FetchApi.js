@@ -1,31 +1,13 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
-
-function FetchApi() {
-    const [post,setPost]=useState([])
-    useEffect(()=>{
-        fetch("https://jsonplaceholder.typicode.com/posts")
-        .then(response=>response.json())
-        .then(result=>setPost(result))
-        .catch((err)=>{
-            console.log("no data found" + err)
-        })
-    })
-  return (
-    <>
-    <div>FetchApi</div>
-    <ul>
-    {post.map(pst=>{
-        return(
-            <>
-            <li key={pst.id}>{pst.id}.{pst.title}</li>
-         
-            </>
-        )
-    })}
-    </ul>
-    </>
-
-  )
-}
-
-export default FetchApi
+const weatherApidata = async (city) => {
+    try {
+        let key="0e5bf5a183e2d129eb116250d0a34b9d"
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`);
+      const result = await response.json();
+      console.log(result);
+      return result; 
+    } catch (err) {
+      console.log("Error:", err);
+      return null;
+    }
+  };
+  export default weatherApidata;
